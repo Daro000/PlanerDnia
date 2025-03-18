@@ -19,7 +19,7 @@
             <ComboBoxItem Content="Szkola"/>
         </ComboBox>
         
-        <Button Name="Stworz">Utworz zadanie</Button>
+        <Button x:Name="Stworz">Utworz zadanie</Button>
         
         <Grid Margin="10"> 
             <Grid.RowDefinitions>
