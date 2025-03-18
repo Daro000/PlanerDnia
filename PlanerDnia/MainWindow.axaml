@@ -38,11 +38,12 @@
             
             <ComboBox Grid.Row="1" Grid.Column="0"></ComboBox>
             
-            <CheckBox Grid.Row="2" Grid.Column="0" Margin="10"></CheckBox>
+            <CheckBox x:Name="Ukonczone" Grid.Row="2" Grid.Column="0" Margin="10"></CheckBox>
             
             <Button Grid.Row="3" Grid.Column="0">Usun zadanie</Button>
             
         </Grid>
         
+        <TextBlock x:Name="Podsumowanie" Text=""></TextBlock>
     </StackPanel>
 </Window>

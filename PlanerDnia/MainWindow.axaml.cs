@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using System.Linq;
 
 namespace PlanerDnia;
 
@@ -28,7 +29,7 @@ public partial class MainWindow : Window
         }
         
     }
-
+    
     private void Stworz_button_Click(object sender, RoutedEventArgs e)
     {
         var valueZadanie = Zadanie.Text;
@@ -41,9 +42,18 @@ public partial class MainWindow : Window
             Zadanie.Clear();
             RZadania.SelectedIndex = -1;
 
-            UpdateSummary();
+            Odswiez();
         }
     }
+    
 
+
+        
+    private void Odswiez()
+    {
+        int wszystkieZad = ListaZadan.Count;
+        int ukonczoneZad = ListaZadan.Count(zadanie => zadanie.CzyUkonczone);
+        Podsumowanie.Text = $"Zadania: {wszystkieZad}, Ukończone: {ukonczoneZad}";
     }
-}
+    
+    }
