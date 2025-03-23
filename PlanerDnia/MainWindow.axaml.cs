@@ -28,6 +28,10 @@ public partial class MainWindow : Window
             Kategoria = kategoria;
             CzyUkonczone = false;
         }
+        public override string ToString()
+        {
+            return $"{Nazwa} ({Kategoria})";
+        }
         
     }
     
@@ -39,28 +43,22 @@ public partial class MainWindow : Window
         if (!string.IsNullOrEmpty(valueZadanie) && !string.IsNullOrEmpty(valueprzedmiot))
         {
             ZadanieButton newZadanieButton= new ZadanieButton(valueZadanie, valueprzedmiot);
-            
             ListaZadan.Add(newZadanieButton);
-            
             ListaZadanBox.Items.Add(newZadanieButton);
-            
             Zadanie.Clear();
-            
             RZadania.SelectedIndex = -1;
-
             Odswiez();
         }
     }
     
 
+    
     private void ListaZadanBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (ListaZadanBox.SelectedItem != null)
         {
             wybraneZadanie = (ZadanieButton)ListaZadanBox.SelectedItem;
             EdytujZadanie.Text = wybraneZadanie.Nazwa;
-
-           
             foreach (ComboBoxItem item in EdytujKategorie.Items)
             {
                 if (item.Content.ToString() == wybraneZadanie.Kategoria)
@@ -72,7 +70,21 @@ public partial class MainWindow : Window
         }
     }
     
-  
+    private void ZapiszZmiany_Click(object sender, RoutedEventArgs e)
+    {
+        if (wybraneZadanie != null)
+        {
+            wybraneZadanie.Nazwa = EdytujZadanie.Text;
+            wybraneZadanie.Kategoria = ((ComboBoxItem)EdytujKategorie.SelectedItem).Content.ToString();
+            ListaZadanBox.Items.Clear();
+            foreach (var zadanie in ListaZadan)
+            {
+                ListaZadanBox.Items.Add(zadanie);
+            }
+
+            Odswiez();
+        }
+    }
         
     private void Odswiez()
     {

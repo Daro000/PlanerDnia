@@ -39,9 +39,9 @@
                 
             </Grid.ColumnDefinitions>
             
-            <TextBox x:Name="EdytujZadanie" Width="200" Height="30" Watermark="Edytuj nazwę zadania" Margin="10"/>
+            <TextBox Grid.Row="0" x:Name="EdytujZadanie" Width="200" Height="30" Watermark="Edytuj nazwę zadania" Margin="10"/>
             
-            <ComboBox x:Name="EdytujKategorie" Width="200" Margin="10">
+            <ComboBox Grid.Row="1" x:Name="EdytujKategorie" Width="200" Margin="10">
                 <ComboBoxItem Content="Praca"/>
                 <ComboBoxItem Content="Relaks"/>
                 <ComboBoxItem Content="Zakupy"/>
@@ -49,7 +49,7 @@
                 <ComboBoxItem Content="Szkola"/>
             </ComboBox>
             
-            <CheckBox x:Name="Ukonczone" Grid.Row="2" Grid.Column="0" Margin="10"></CheckBox>
+            <CheckBox  x:Name="Ukonczone" Grid.Row="2" Grid.Column="0" Margin="10"></CheckBox>
             
             <Button Grid.Row="3" x:Name="ZapiszZmiany" Content="Zapisz zmiany" Click="ZapiszZmiany_Click"/>
             
