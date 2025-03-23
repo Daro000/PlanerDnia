@@ -9,7 +9,7 @@
     <StackPanel>
         
         <TextBox x:Name="Zadanie" Width="200" Height="30" Watermark="Podaj swoje imie" 
-                  Margin="10,20,30,40"/>
+                  Margin="30,20,30,40"/>
         
         <ComboBox x:Name="RZadania" Width="200" Margin="10" HorizontalAlignment="Center">
             <ComboBoxItem Content="Praca"/>
@@ -36,6 +36,7 @@
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 
             </Grid.ColumnDefinitions>
             
@@ -49,11 +50,11 @@
                 <ComboBoxItem Content="Szkola"/>
             </ComboBox>
             
-            <CheckBox  x:Name="Ukonczone" Grid.Row="2" Grid.Column="0" Margin="10"></CheckBox>
+            <CheckBox x:Name="Ukonczone" Grid.Row="2" Grid.Column="0" Margin="10" Content="Ukończone"/>
             
             <Button Grid.Row="3" x:Name="ZapiszZmiany" Content="Zapisz zmiany" Click="ZapiszZmiany_Click"/>
             
-            <Button Grid.Row="4" Grid.Column="0">Usun zadanie</Button>
+            <Button Grid.Row="3" Grid.Column="1" x:Name="UsunZadanie" Content="Usuń zadanie" Click="UsunZadanie_Click"/>
             
         </Grid>
         

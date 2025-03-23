@@ -30,7 +30,7 @@ public partial class MainWindow : Window
         }
         public override string ToString()
         {
-            return $"{Nazwa} ({Kategoria})";
+            return $"{Nazwa} ({Kategoria}) - {(CzyUkonczone ? "Ukończone" : "Nieukończone")}";
         }
         
     }
@@ -58,6 +58,7 @@ public partial class MainWindow : Window
         if (ListaZadanBox.SelectedItem != null)
         {
             wybraneZadanie = (ZadanieButton)ListaZadanBox.SelectedItem;
+            Ukonczone.IsChecked = wybraneZadanie.CzyUkonczone;
             EdytujZadanie.Text = wybraneZadanie.Nazwa;
             foreach (ComboBoxItem item in EdytujKategorie.Items)
             {
@@ -76,6 +77,7 @@ public partial class MainWindow : Window
         {
             wybraneZadanie.Nazwa = EdytujZadanie.Text;
             wybraneZadanie.Kategoria = ((ComboBoxItem)EdytujKategorie.SelectedItem).Content.ToString();
+            wybraneZadanie.CzyUkonczone = Ukonczone.IsChecked ?? false;
             ListaZadanBox.Items.Clear();
             foreach (var zadanie in ListaZadan)
             {
@@ -91,6 +93,19 @@ public partial class MainWindow : Window
         int wszystkieZad = ListaZadan.Count;
         int ukonczoneZad = ListaZadan.Count(zadanie => zadanie.CzyUkonczone);
         Podsumowanie.Text = $"Zadania: {wszystkieZad}, Ukończone: {ukonczoneZad}";
+    }
+    
+    private void UsunZadanie_Click(object sender, RoutedEventArgs e)
+    {
+        if (wybraneZadanie != null)
+        {
+            ListaZadan.Remove(wybraneZadanie);
+            ListaZadanBox.Items.Remove(wybraneZadanie);
+            wybraneZadanie = null;
+            EdytujZadanie.Clear();
+            Ukonczone.IsChecked = false;
+            Odswiez();
+        }
     }
     
     }
