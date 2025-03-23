@@ -8,6 +8,7 @@ namespace PlanerDnia;
 
 public partial class MainWindow : Window
 {
+    public ZadanieButton wybraneZadanie;
     public ObservableCollection<ZadanieButton> ListaZadan { get; set; }
     public MainWindow()
     {
@@ -38,8 +39,13 @@ public partial class MainWindow : Window
         if (!string.IsNullOrEmpty(valueZadanie) && !string.IsNullOrEmpty(valueprzedmiot))
         {
             ZadanieButton newZadanieButton= new ZadanieButton(valueZadanie, valueprzedmiot);
+            
             ListaZadan.Add(newZadanieButton);
+            
+            ListaZadanBox.Items.Add(newZadanieButton);
+            
             Zadanie.Clear();
+            
             RZadania.SelectedIndex = -1;
 
             Odswiez();
@@ -47,7 +53,26 @@ public partial class MainWindow : Window
     }
     
 
+    private void ListaZadanBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (ListaZadanBox.SelectedItem != null)
+        {
+            wybraneZadanie = (ZadanieButton)ListaZadanBox.SelectedItem;
+            EdytujZadanie.Text = wybraneZadanie.Nazwa;
 
+           
+            foreach (ComboBoxItem item in EdytujKategorie.Items)
+            {
+                if (item.Content.ToString() == wybraneZadanie.Kategoria)
+                {
+                    EdytujKategorie.SelectedItem = item;
+                    break;
+                }
+            }
+        }
+    }
+    
+  
         
     private void Odswiez()
     {
